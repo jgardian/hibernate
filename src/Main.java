@@ -19,7 +19,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		Main main = new Main();
-		main.addNewData();
+		//main.addNewData();
 		main.printSchools();
 
 		//main.executeQueries();
@@ -133,20 +133,21 @@ public class Main {
 	}
 
 	private void printSchools() {
-		Session session = HibernateUtil.getSessionFactory().openSession();
 		Criteria crit = session.createCriteria(School.class);
 		List<School> schools = crit.list();
 
 		System.out.println("### Schools and classes");
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy");
 		for (School s : schools) {
 			System.out.println(s);
 			for (SchoolClass schoolClass : s.getClasses()) {
-				System.out.println("   " + schoolClass);
+				System.out.println(schoolClass);
+				System.out.println("       > Teachers:");
+				for (Teacher teacher : schoolClass.getTeachers()) {
+					System.out.println("            " + teacher);
+				}
+				System.out.println("       > Students:");
 				for (Student student : schoolClass.getStudents()) {
-					System.out.print("            " + student.getName());
-					System.out.print(" " + student.getSurname());
-					System.out.println(" (" + student.getPesel() + ")");
+					System.out.println("            " + student);
 				}
 			}
 		}

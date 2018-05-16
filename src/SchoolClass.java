@@ -8,6 +8,7 @@ public class SchoolClass implements java.io.Serializable {
 	private int currentYear;
 	private String profile;
 	private Set<Student> students;
+	private Set<Teacher> teachers;
 
 	public SchoolClass() {
 		students = new HashSet<Student>();
@@ -55,8 +56,16 @@ public class SchoolClass implements java.io.Serializable {
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
+	public Set<Teacher> getTeachers() {
+		return teachers;
+	}
+
+	public void setTeachers(Set<Teacher> teachers) {
+		this.teachers = teachers;
+	}
 
 	public String toString() {
 		return "Class: " + profile + " (Started: " + getStartYear() + ", Current year: " + getCurrentYear() + ")";
 	}
+	
 }
